@@ -232,3 +232,33 @@
     font-size: 14px;
 }
 
+/*Recent Project Section*/
+.CourseImage{
+    width: 100%;
+    margin-bottom: 7px;
+}
+
+.courseTitle{
+    font-family: 'Montserrat',SansSerif;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.courseDes{
+    font-family: 'Raleway',SansSerif;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.courseDetails{
+    font-family: 'Raleway',SansSerif;
+    font-weight: 600;
+    font-size: 18px;
+    text-decoration: none;
+    color: #0073E6;
+}
+
+.courseDetails:hover{
+    text-decoration: none;
+}
+
