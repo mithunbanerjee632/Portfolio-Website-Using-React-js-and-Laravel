@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import TopBanner from "./component/TopBanner/TopBanner";
 import Services from "./component/Services/Services";
 import TopNavigation from "./component/TopNavigation/TopNavigation";
+import Analysis from "./component/Analysis/Analysis";
 
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <TopNavigation/>
       <TopBanner/>
         <Services/>
+        <Analysis/>
 
     </div>
   );
