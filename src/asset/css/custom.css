@@ -1,3 +1,5 @@
+/*Top Banner Section*/
+
 .topFixedBanner{
     background-image: url("../images/banner.jpg");
     background-attachment: fixed;
@@ -30,6 +32,8 @@
     font-size: 22px;
     color:#ffffff;
 }
+
+/*Service Section*/
 
 .serviceCard{
     margin: 5px 5px 5px 5px;
@@ -72,7 +76,7 @@
 }
 
 
-
+/*Nav Bar Section*/
 .navTitle{
     font-family: 'Montserreat',sans-serif;
     color: #ffffff !important;
@@ -124,9 +128,80 @@
     text-decoration: none !important;
 }
 
+/*Technology Section*/
+
 .des{
     font-weight: 400;
     color: #2B2B2B;
     font-family: 'Raleway',sans-serif;
     font-size: 14px;
 }
+
+/*Summary Section*/
+
+.summarySection{
+    margin-top: 5rem;
+}
+
+.summaryBanner{
+    background-image: url("../images/banner.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 350px;
+    background-size: cover;
+}
+
+.summaryBannerOverlay{
+    position: absolute;
+    min-height: 350px;
+    width: 100%;
+    background: rgba(0,0,0,0.8);
+}
+
+.countNumber{
+    font-family: 'Montserrat',SansSerif;
+    font-size: 48px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.countTitle{
+    font-family: 'Raleway',SansSerif;
+    font-size: 22px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.countSection{
+    margin-top: 16% !important;
+}
+
+.cardTitle{
+    text-align: justify!important;
+    font-family: 'Raleway',SansSerif;
+    font-weight: 400;
+    font-size: 22px;
+    color: #000000;
+}
+
+.cardSubTitle{
+    font-family: 'Montserrat',SansSerif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #000000;
+    text-align: justify!important;
+}
+
+.iconBullet{
+    font-size: 16px;
+    color: #0073E6;
+}
+
+.workCard{
+    margin-top: 15%;
+    padding: 10px 10px 10px 10px;
+    border-radius: 2px;
+}
+
+
