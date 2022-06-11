@@ -37,7 +37,7 @@ class Services extends Component {
                             <div className="serviceCard text-center">
                                 <img src={graphicsLogo}/>
                                 <h2 className="serviceName">Graphics Design</h2>
-                                <p className="serviceDescription">I desing modern user interface and other graphical components for your business and instiution.</p>
+                                <p className="serviceDescription">I design modern user interface and other graphical components for your business and instiution.</p>
                             </div>
                         </Col>
 

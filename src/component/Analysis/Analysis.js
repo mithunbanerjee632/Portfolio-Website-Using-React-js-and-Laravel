@@ -24,7 +24,7 @@ class Analysis extends Component {
 
 
     render() {
-        var blue = "rgba(0,115,230,0.8)";
+        var blue="rgba(0,115,230,0.8)"
         return (
             <Fragment>
                 <Container>
@@ -33,15 +33,12 @@ class Analysis extends Component {
                     <Row>
                         <Col  lg={6} md={12} sm={12}>
                             <ResponsiveContainer>
-
                                 <BarChart width={100} height={300} data={this.state.data}>
                                     <XAxis dataKey="Technology"/>
                                     <Tooltip/>
-                                    <Bar dataKey="Project" fill={blue}>
-
+                                    <Bar dataKey="Project" fill={blue} >
                                     </Bar>
                                 </BarChart>
-
                             </ResponsiveContainer>
 
                         </Col>
