@@ -304,8 +304,66 @@
     border-radius: 50%;
 }
 
-
-
-
-
 /*Footer Section*/
+.footerSection{
+    margin-top: 5rem;
+    box-shadow: 0 0 4px 0 rgba(0,115,230,0.2);
+}
+
+.footerDes{
+    margin-right: 30px;
+}
+
+.socialIcon{
+    font-family: 'Raleway',SansSerif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0073E6;
+    text-decoration: none;
+}
+
+.socialIcon:hover{
+    color: #000000;
+    text-decoration: none;
+}
+
+.footerLink{
+    font-family: 'Raleway',SansSerif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #7F7E7E;
+    text-decoration: none;
+}
+
+.footerLink:hover{
+    color: #0073E6;
+    text-decoration: none;
+}
+.footerAddress{
+    color: #7F7E7E;
+    font-family: 'Raleway',sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+
+}
+
+.copyrightSection{
+    padding:20px 20px 20px 20px;
+    background-color: #0073E6;
+}
+
+.copyrightLink{
+    text-decoration: none;
+    color: #ffffff;
+    font-family: 'Montserrat',SansSerif;
+    font-weight: 400;
+    font-size: 16px;
+
+}
+
+.copyrightLink:hover{
+    text-decoration: none;
+    color: #000000;
+
+
+}
