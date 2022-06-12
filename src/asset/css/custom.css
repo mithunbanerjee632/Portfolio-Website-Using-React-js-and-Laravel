@@ -17,7 +17,7 @@
 }
 
 .topContent{
-    margin-top:10rem;
+    margin-top:12rem;
 }
 .topTitle{
     font-family: 'Montserrat',sans-serif;
@@ -124,7 +124,7 @@
     font-size: 16px;
     font-family: 'Montserreat',sans-serif;
     font-weight: 400;
-    color: #000000 !important;
+    color:  #2B2B2B !important;
     text-decoration: none !important;
 }
 
@@ -182,14 +182,14 @@
     font-family: 'Raleway',SansSerif;
     font-weight: 400;
     font-size: 22px;
-    color: #000000;
+    color:  #2B2B2B;
 }
 
 .cardSubTitle{
     font-family: 'Montserrat',SansSerif;
     font-weight: 400;
     font-size: 14px;
-    color: #000000;
+    color:  #2B2B2B;
     text-align: justify!important;
 }
 
@@ -323,7 +323,7 @@
 }
 
 .socialIcon:hover{
-    color: #000000;
+    color:  #2B2B2B;
     text-decoration: none;
 }
 
@@ -331,7 +331,7 @@
     font-family: 'Raleway',SansSerif;
     font-size: 14px;
     font-weight: 400;
-    color: #7F7E7E;
+    color: #2B2B2B;
     text-decoration: none;
 }
 
@@ -340,7 +340,7 @@
     text-decoration: none;
 }
 .footerAddress{
-    color: #7F7E7E;
+    color: #2B2B2B;
     font-family: 'Raleway',sans-serif;
     font-size: 15px;
     font-weight: 400;
@@ -363,7 +363,33 @@
 
 .copyrightLink:hover{
     text-decoration: none;
-    color: #000000;
+    color: #2B2B2B;
+}
 
+/*About Me Page*/
+.topFixedPage{
+    background-image: url("../images/banner.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 300px;
+    background-size: cover;
+}
 
+.topPageOverlay{
+    position: absolute;
+    min-height: 300px;
+    width: 100%;
+    background: rgba(0,0,0,0.8);
+}
+
+.topPageContent{
+    margin-top:9rem;
+}
+
+.pageTitle{
+    font-family: 'Raleway',sans-serif;
+    font-weight: 600;
+    font-size: 28px;
+    color:#ffffff;
 }

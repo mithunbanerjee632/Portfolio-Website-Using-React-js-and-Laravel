@@ -31,7 +31,7 @@ class Analysis extends Component {
                     <h1 className="serviceMainTitle text-center">TECHNOLOGY USED</h1>
 
                     <Row>
-                        <Col  lg={6} md={12} sm={12}>
+                        <Col   lg={6} md={12} sm={12}>
                             <ResponsiveContainer>
                                 <BarChart width={100} height={300} data={this.state.data}>
                                     <XAxis dataKey="Technology"/>

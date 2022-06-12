@@ -7,10 +7,24 @@ class RecentProject extends Component {
     render() {
         return (
             <Fragment>
-                <Container className="text-center">
+                <Container className="text-center overflow-hidden">
                     <h1 className="serviceMainTitle">RECENT PROJECTS</h1>
                     <Row>
-                        <Col sm={12} md={6} lg={4}>
+                        <Col sm={12} md={6} lg={4} className="p-2">
+                            <Card className="projectCard">
+                                <Card.Img variant="top" src={images}/>
+                                <Card.Body>
+                                    <Card.Title className="projectCardTitle">Card Title</Card.Title>
+                                    <Card.Text className="projectCardDes">
+                                        Some quick example text to build on the card title and make up the bulk of
+                                        the card's content.
+                                    </Card.Text>
+                                    <Button variant="primary">Details</Button>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+
+                        <Col sm={12} md={6} lg={4} className="p-2">
                             <Card className="projectCard">
                                 <Card.Img variant="top" src={images} />
                                 <Card.Body>
@@ -24,21 +38,7 @@ class RecentProject extends Component {
                             </Card>
                         </Col>
 
-                        <Col>
-                            <Card className="projectCard">
-                                <Card.Img variant="top" src={images} />
-                                <Card.Body>
-                                    <Card.Title className="projectCardTitle">Card Title</Card.Title>
-                                    <Card.Text className="projectCardDes">
-                                        Some quick example text to build on the card title and make up the bulk of
-                                        the card's content.
-                                    </Card.Text>
-                                    <Button variant="primary">Details</Button>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-
-                        <Col>
+                        <Col sm={12} md={6} lg={4} className="p-2">
                             <Card className="projectCard">
                                 <Card.Img variant="top" src={images} />
                                 <Card.Body>
