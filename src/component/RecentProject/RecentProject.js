@@ -7,7 +7,7 @@ class RecentProject extends Component {
     render() {
         return (
             <Fragment>
-                <Container className="text-center overflow-hidden">
+                <Container className="text-center">
                     <h1 className="serviceMainTitle">RECENT PROJECTS</h1>
                     <Row>
                         <Col sm={12} md={6} lg={4} className="p-2">

@@ -368,19 +368,19 @@
 
 /*About Me Page*/
 .topFixedPage{
-    background-image: url("../images/banner.jpg");
+    background-image: url("../images/banner2.png");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 300px;
+    min-height: 320px;
     background-size: cover;
 }
 
 .topPageOverlay{
     position: absolute;
-    min-height: 300px;
+    min-height: 320px;
     width: 100%;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.7);
 }
 
 .topPageContent{
@@ -393,3 +393,13 @@
     font-size: 28px;
     color:#ffffff;
 }
+
+/*Contact Section*/
+
+.form-control:focus{
+    border-radius: 2px !important;
+    border-color: #0073E6 !important;
+    box-shadow: 0 0 4px 0 rgba(0,115,230,0.2)!important;
+
+}
+

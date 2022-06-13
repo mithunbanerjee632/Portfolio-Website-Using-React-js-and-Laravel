@@ -6,10 +6,12 @@ import AboutDescription from "./component/AboutDescription/AboutDescription";
 import AboutPage from "./pages/AboutPage";
 import CoursesPage from "./pages/CoursesPage";
 import ProjectPage from "./pages/ProjectPage";
+import ContactPage from "./pages/ContactPage";
+import ServicePage from "./pages/ServicePage";
 function App() {
   return (
     <div>
-      <ProjectPage/>
+      <ServicePage/>
 
 
     </div>
