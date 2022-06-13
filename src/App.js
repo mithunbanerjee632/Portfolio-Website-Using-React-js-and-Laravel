@@ -5,16 +5,16 @@ import TopNavigation from "./component/TopNavigation/TopNavigation";
 import AboutDescription from "./component/AboutDescription/AboutDescription";
 import AboutPage from "./pages/AboutPage";
 import CoursesPage from "./pages/CoursesPage";
-import ProjectPage from "./pages/ProjectPage";
+import PortfolioPage from "./pages/PortfolioPage";
 import ContactPage from "./pages/ContactPage";
 import ServicePage from "./pages/ServicePage";
+import {BrowserRouter} from "react-router-dom";
+import AppRoute from "./router/AppRoute";
 function App() {
   return (
-    <div>
-      <ServicePage/>
-
-
-    </div>
+    <BrowserRouter>
+      <AppRoute/>
+    </BrowserRouter>
   );
 }
 

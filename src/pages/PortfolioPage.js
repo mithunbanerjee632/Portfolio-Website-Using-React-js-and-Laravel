@@ -4,11 +4,11 @@ import PageTop from "../component/PageTop/PageTop";
 import AllProjects from "../component/AllProjects/AllProjects";
 import Footer from "../component/Footer/Footer";
 
-class ProjectPage extends Component {
+class PortfolioPage extends Component {
     render() {
         return (
             <Fragment>
-                <TopNavigation/>
+                <TopNavigation title="Portfolio"/>
                 <PageTop pagetitle="Portfolio"/>
                 <AllProjects/>
                 <Footer/>
@@ -18,4 +18,4 @@ class ProjectPage extends Component {
     }
 }
 
-export default ProjectPage;
+export default PortfolioPage;
