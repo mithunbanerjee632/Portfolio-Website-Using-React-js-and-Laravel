@@ -79,17 +79,29 @@
 /*Nav Bar Section*/
 .navTitle{
     font-family: 'Montserreat',sans-serif;
+    text-decoration: none;
     color: #ffffff !important;
     font-size: 24px;
     font-weight: 700;
 
 }
 
+.navTitle:hover{
+    text-decoration: none;
+
+}
+
 .navTitleScroll{
     font-family: 'Montserreat',sans-serif;
+    text-decoration: none;
     color: #0073E6 !important;
     font-size: 24px;
     font-weight: 700;
+
+}
+
+.navTitleScroll:hover{
+    text-decoration: none;
 
 }
 
@@ -110,6 +122,7 @@
     -o-transition: background-color 400ms linear;
     -moz-transition: background-color 400ms linear;
     -webkit-transition: background-color 400ms linear;
+    box-shadow: 0 0 6px 0 rgba(0,115,230,0.3);
 }
 
 .navItem{
@@ -144,7 +157,7 @@
 }
 
 .summaryBanner{
-    background-image: url("../images/banner.jpg");
+    background-image: url("../images/banner2.png");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -368,7 +381,7 @@
 
 /*About Me Page*/
 .topFixedPage{
-    background-image: url("../images/banner2.png");
+    background-image: url("../images/banner3.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -403,3 +416,40 @@
 
 }
 
+/*Project Details Button*/
+.link-style{
+    color: #ffffff!important;
+    text-decoration: none!important;
+}
+
+.link-style:hover{
+    color: #ffffff!important;
+    text-decoration: none!important;
+}
+
+/*Course Details page*/
+
+.topPageContentCourse{
+    margin-top:7rem;
+}
+
+.topPageCourseTitles{
+    font-family: 'Raleway',sans-serif;
+    font-weight: 600;
+    font-size: 28px;
+    color:#ffffff;
+}
+
+.topPageCourseSubTitles{
+    font-family: 'Raleway',sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color:#ffffff;
+}
+
+.topPageCourseDes{
+    font-family: 'Raleway',sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color:#ffffff;
+}

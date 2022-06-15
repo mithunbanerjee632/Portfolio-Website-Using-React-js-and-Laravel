@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {Col, Container, Row} from "react-bootstrap";
 import images from "../../asset/images/client_meeting.jpg";
+import {Link} from "react-router-dom";
 
 class AllCourses extends Component {
     render() {
@@ -17,7 +18,7 @@ class AllCourses extends Component {
                                 <Col lg={6} md={6} sm={12} className="p-2">
                                     <h4 className="text-justify courseTitle">Web Development</h4>
                                     <p className="text-justify courseDes">I build native and cross platfrom mobile app for your business app for your business</p>
-                                    <a href="#" className="courseDetails">Details</a>
+                                    <Link to="/CourseDetails" className="courseDetails">Details</Link>
                                 </Col>
                             </Row>
 
@@ -32,7 +33,7 @@ class AllCourses extends Component {
                                 <Col lg={6} md={6} sm={12}>
                                     <h4 className="text-justify courseTitle">Web Development</h4>
                                     <p className="text-justify courseDes">I build native and cross platfrom mobile app for your business app for your business</p>
-                                    <a href="#" className="courseDetails">Details</a>
+                                    <Link to="/CourseDetails" className="courseDetails">Details</Link>
                                 </Col>
                             </Row>
                         </Col>
@@ -46,7 +47,7 @@ class AllCourses extends Component {
                                 <Col lg={6} md={6} sm={12}>
                                     <h4 className="text-justify courseTitle">Web Development</h4>
                                     <p className="text-justify courseDes">I build native and cross platfrom mobile app for your business app for your business</p>
-                                    <a href="#" className="courseDetails">Details</a>
+                                    <Link to="/CourseDetails" className="courseDetails">Details</Link>
                                 </Col>
                             </Row>
                         </Col>
@@ -60,7 +61,7 @@ class AllCourses extends Component {
                                 <Col lg={6} md={6} sm={12}>
                                     <h4 className="text-justify courseTitle">Web Development</h4>
                                     <p className="text-justify courseDes">I build native and cross platfrom mobile app for your business app for your business</p>
-                                    <a href="#" className="courseDetails">Details</a>
+                                    <Link to="/CourseDetails" className="courseDetails">Details</Link>
                                 </Col>
                             </Row>
                         </Col>
@@ -74,7 +75,7 @@ class AllCourses extends Component {
                                 <Col lg={6} md={6} sm={12}>
                                     <h4 className="text-justify courseTitle">Web Development</h4>
                                     <p className="text-justify courseDes">I build native and cross platfrom mobile app for your business app for your business</p>
-                                    <a href="#" className="courseDetails">Details</a>
+                                    <Link to="/CourseDetails" className="courseDetails">Details</Link>
                                 </Col>
                             </Row>
                         </Col>
@@ -88,7 +89,7 @@ class AllCourses extends Component {
                                 <Col lg={6} md={6} sm={12}>
                                     <h4 className="text-justify courseTitle">Web Development</h4>
                                     <p className="text-justify courseDes">I build native and cross platfrom mobile app for your business app for your business</p>
-                                    <a href="#" className="courseDetails">Details</a>
+                                    <Link to="/CourseDetails" className="courseDetails">Details</Link>
                                 </Col>
                             </Row>
                         </Col>

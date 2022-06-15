@@ -1,11 +1,11 @@
 import React, {Component, Fragment} from 'react';
 import TopNavigation from "../component/TopNavigation/TopNavigation";
 import PageTop from "../component/PageTop/PageTop";
-import ContactSection from "../component/ContactSection/ContactSection";
-import Services from "../component/Services/Services";
+import RefundDescription from "../component/RefundDescription/RefundDescription";
 import Footer from "../component/Footer/Footer";
 
-class ServicePage extends Component {
+class RefundPage extends Component {
+
     componentDidMount() {
         window.scroll(0,0)
     }
@@ -13,15 +13,13 @@ class ServicePage extends Component {
     render() {
         return (
             <Fragment>
-                <TopNavigation title="Service"/>
-                <PageTop pagetitle="My Services"/>
-                <Services/>
-                <ContactSection/>
+                <TopNavigation title="Refund Policy"/>
+                <PageTop pagetitle="Refund Policy"/>
+                <RefundDescription/>
                 <Footer/>
-
             </Fragment>
         );
     }
 }
 
-export default ServicePage;
+export default RefundPage;

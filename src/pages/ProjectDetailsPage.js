@@ -1,11 +1,11 @@
 import React, {Component, Fragment} from 'react';
 import TopNavigation from "../component/TopNavigation/TopNavigation";
 import PageTop from "../component/PageTop/PageTop";
-import ContactSection from "../component/ContactSection/ContactSection";
-import Services from "../component/Services/Services";
+import ProjectDetails from "../component/ProjectDetails/ProjectDetails";
 import Footer from "../component/Footer/Footer";
 
-class ServicePage extends Component {
+class ProjectDetailsPage extends Component {
+
     componentDidMount() {
         window.scroll(0,0)
     }
@@ -13,10 +13,9 @@ class ServicePage extends Component {
     render() {
         return (
             <Fragment>
-                <TopNavigation title="Service"/>
-                <PageTop pagetitle="My Services"/>
-                <Services/>
-                <ContactSection/>
+                <TopNavigation title="Project Details"/>
+                <PageTop pagetitle="Project Name"/>
+                <ProjectDetails/>
                 <Footer/>
 
             </Fragment>
@@ -24,4 +23,4 @@ class ServicePage extends Component {
     }
 }
 
-export default ServicePage;
+export default ProjectDetailsPage;
