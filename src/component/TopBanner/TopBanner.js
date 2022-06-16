@@ -2,7 +2,20 @@ import React, {Component, Fragment} from 'react';
 import {Button, Col, Container, Row} from "react-bootstrap";
 import '../../asset/css/custom.css';
 import '../../asset/css/bootstrap.min.css';
+import axios from "axios";
 class TopBanner extends Component {
+
+    componentDidMount() {
+        axios.get('http://localhost:8000/HomeTop')
+            .then(function(response){
+                console.log(response.data);
+            })
+            .catch(function(error){
+                console.log(error);
+            });
+    }
+
+
     render() {
         return (
             <Fragment>
