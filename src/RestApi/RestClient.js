@@ -4,7 +4,7 @@ class RestClient {
 
 
     static GetRequest(GetUrl){
-        axios.get(GetUrl).then(response=>{
+       return  axios.get(GetUrl).then(response=>{
             return response.data;
         }).catch(error=>{
             return null;
