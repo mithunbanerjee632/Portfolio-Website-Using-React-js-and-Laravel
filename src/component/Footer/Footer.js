@@ -4,8 +4,39 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFacebook,faYoutube} from "@fortawesome/free-brands-svg-icons";
 import {faEnvelope, faPhone, faAddressCard} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
+import RestClient from "../../RestApi/RestClient";
+import AppUrl from "../../RestApi/AppUrl";
 
 class Footer extends Component {
+
+    constructor() {
+        super();
+        this.state={
+            address:"",
+            email:"",
+            phone:"",
+            facebook:"",
+            youtube:"",
+            footer_credit:""
+        }
+    }
+
+    componentDidMount() {
+        RestClient.GetRequest(AppUrl.Footer).then(result=>{
+            this.setState({
+                address:result[0]['address'],
+                email:result[0]['email'],
+                phone:result[0]['phone'],
+                facebook:result[0]['facebook'],
+                youtube:result[0]['youtube'],
+                footer_credit:result[0]['footer_credit']
+
+            })
+        })
+    }
+
+
+
     render() {
         return (
             <Fragment>
@@ -14,16 +45,16 @@ class Footer extends Component {
 
                         <Col lg={3} md={6} sm={12} className=" p-5 text-start">
                             <h1 className="serviceName ">Follow Me</h1>
-                            <a className="socialIcon" href=""><FontAwesomeIcon icon={faFacebook} /> Facebook</a><br/>
-                            <a className="socialIcon" href=""><FontAwesomeIcon icon={faYoutube} /> YouTube</a>
+                            <a className="socialIcon" href=""><FontAwesomeIcon icon={faFacebook} />facebook</a><br/>
+                            <a className="socialIcon" href=""><FontAwesomeIcon icon={faYoutube} /> youtube</a>
 
                         </Col>
 
                         <Col lg={3} md={6} sm={12} className="p-5 text-start">
                             <h1 className="serviceName">Address</h1>
-                            <p className="footerAddress">#169/8/1-A Moriam Villa,WestDholair Par,Shyampur,Dhaka-1204</p>
-                            <p className="footerAddress"><FontAwesomeIcon icon={faEnvelope} /> Engr.mithunbanerjee632@gmail.com</p>
-                            <p className="footerAddress"><FontAwesomeIcon icon={faPhone} /> 01713574869</p>
+                            <p className="footerAddress"> {this.state.address}</p>
+                            <p className="footerAddress"><FontAwesomeIcon icon={faEnvelope} /> {this.state.email}</p>
+                            <p className="footerAddress"><FontAwesomeIcon icon={faPhone} /> {this.state.phone}</p>
 
                         </Col>
 
@@ -48,7 +79,7 @@ class Footer extends Component {
                 </Container>
 
                 <Container fluid={true} className="text-center copyrightSection">
-                    <a className="copyrightLink" href="#">Mithun.com &copy; 2022-2023</a>
+                    <a className="copyrightLink" href="#">{this.state.footer_credit}</a>
                 </Container>
 
             </Fragment>

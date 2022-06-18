@@ -5,16 +5,26 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlayCircle} from "@fortawesome/free-solid-svg-icons";
 import 'video-react/dist/video-react.css';
 import {Player,BigPlayButton} from "video-react";
+import RestClient from "../../RestApi/RestClient";
+import AppUrl from "../../RestApi/AppUrl";
 
 class Video extends Component {
      constructor() {
          super();
          this.state={
-             show:false
+             show:false,
+             videDesc:"",
+             videoUrl:""
          }
      }
 
-     modalClose=()=>{
+     componentDidMount() {
+         RestClient.GetRequest(AppUrl.VideoHome).then(result=>{
+             this.setState({videDesc:result [0]['video_description'],videoUrl:result[0]['video_url']})
+         });
+     }
+
+    modalClose=()=>{
          this.setState({show:false});
      }
 
@@ -30,7 +40,7 @@ class Video extends Component {
                         <Col lg={12} md={12} sm={12} className="videoCard">
                            <div>
                                <p className="videoTitle">How I Do</p>
-                               <p className="videoDes">First i analysis the requirement of project. According to the requirement i make a proper technical analysis, then i build a software architecture. According to the planning i start coding. Testing is also going on with coding. Final testing take place after finishing coding part. After successful implementation i provide 6 month free bug fixing service for corresponding project.</p>
+                               <p className="videoDes">{this.state.videDesc}</p>
                                <p><FontAwesomeIcon onClick={this.modalOpen} className=" playBtn iconBullet" icon={faPlayCircle} /></p>
                            </div>
                         </Col>
@@ -42,7 +52,7 @@ class Video extends Component {
                 <Modal size="xl" show={this.state.show} onHide={this.modalClose}>
                     <Modal.Body>
                         <Player>
-                            <source src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4" />
+                            <source src={this.state.videoUrl} />
                             <BigPlayButton position="center"/>
                         </Player>
                     </Modal.Body>
