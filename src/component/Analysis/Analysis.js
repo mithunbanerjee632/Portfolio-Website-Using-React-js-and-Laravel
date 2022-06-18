@@ -1,6 +1,12 @@
 import React, {Component, Fragment} from 'react';
 import {Col, Container, Row} from "react-bootstrap";
 import {BarChart, Bar, ResponsiveContainer, XAxis, Tooltip} from "recharts";
+import RestClient from "../../RestApi/RestClient";
+import AppUrl from "../../RestApi/AppUrl";
+
+import parse from 'html-react-parser';
+import ReactHtmlParser from 'react-html-parser';
+
 
 
 class Analysis extends Component {
@@ -8,18 +14,25 @@ class Analysis extends Component {
         super();
 
         this.state={
-            data:[
-                {Technology:"JAVA",Project:100},
-                {Technology:"Kotlin",Project:80},
-                {Technology:"SQL",Project:90},
-                {Technology:"Bootstrap",Project:95},
-                {Technology:"Jquery",Project:60},
-                {Technology:"React",Project:90},
-                {Technology:"PHP",Project:100},
-                {Technology:"Angular",Project:65},
-            ]
+            data:[],
+            desc:"..."
+
+
         }
     }
+
+    componentDidMount() {
+        RestClient.GetRequest(AppUrl.ChartData).then(result=>{
+            this.setState({data:result})
+        })
+
+        RestClient.GetRequest(AppUrl.TechDescription).then(descrip=>{
+            this.setState({desc:descrip[0]['tech_description']})
+        })
+
+
+    }
+
 
 
 
@@ -31,12 +44,12 @@ class Analysis extends Component {
                     <h1 className="serviceMainTitle text-center">TECHNOLOGY USED</h1>
 
                     <Row>
-                        <Col   lg={6} md={12} sm={12}>
+                        <Col style={{width:'50%', height:'260px'}}  lg={6} md={12} sm={12}>
                             <ResponsiveContainer>
                                 <BarChart width={100} height={300} data={this.state.data}>
-                                    <XAxis dataKey="Technology"/>
+                                    <XAxis dataKey="technology"/>
                                     <Tooltip/>
-                                    <Bar dataKey="Project" fill={blue} >
+                                    <Bar dataKey="project" fill={blue} >
                                     </Bar>
                                 </BarChart>
                             </ResponsiveContainer>
@@ -44,9 +57,12 @@ class Analysis extends Component {
                         </Col>
 
                         <Col lg={6} md={12} sm={12}>
-                            <p className="text-justify des">To build native android apps i use Java as well as kotline mainly. React JS is used for cross platform mobile application. I use MySQL database for relational database system. To build NoSQL application i use MongoDB. Firebase database system is used where it is necessary to provide realtime data flow facilities.</p>
-                            <p className="text-justify des"> I always build dynamic application. Admin panel is the heart of such kinds of application. I always try to provide sufficient features in admin panel to dominate application. According to client demand I use PHP OOP, CodeIgniter and Laravel to build admin panel section. </p>
-                            <p className="text-justify des"> Application security is a big deal for commercial application. I always ensure security portion of my application, moreover i build a security alert system, to notify admin when his system at risk. </p>
+                            <p className="text-justify des">
+
+                                { ReactHtmlParser(this.state.desc) }
+
+
+                            </p>
                         </Col>
                     </Row>
                 </Container>
