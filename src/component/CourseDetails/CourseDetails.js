@@ -71,7 +71,7 @@ class CourseDetails extends Component {
                             <h1 className="serviceName">Skill You Get</h1>
                             { ReactHtmlParser(this.state.skill_all) }
 
-                            <Button variant="primary">More Info</Button>
+                            <Button variant="primary" target="_blank" href={"//"+this.state.course_link}>More Info</Button>
 
                         </Col>
 

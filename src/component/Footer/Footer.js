@@ -45,8 +45,8 @@ class Footer extends Component {
 
                         <Col lg={3} md={6} sm={12} className=" p-5 text-start">
                             <h1 className="serviceName ">Follow Me</h1>
-                            <a className="socialIcon" href=""><FontAwesomeIcon icon={faFacebook} />facebook</a><br/>
-                            <a className="socialIcon" href=""><FontAwesomeIcon icon={faYoutube} /> youtube</a>
+                            <a className="socialIcon" target="_blank" href={"//"+this.state.facebook}><FontAwesomeIcon icon={faFacebook} /> facebook</a><br/>
+                            <a className="socialIcon" target="_blank" href={"//"+this.state.youtube}><FontAwesomeIcon icon={faYoutube} /> youtube</a>
 
                         </Col>
 

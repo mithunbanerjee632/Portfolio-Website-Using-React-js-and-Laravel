@@ -52,7 +52,7 @@ class ProjectDetails extends Component {
                             { ReactHtmlParser(this.state.project_features) }
 
 
-                            <Button variant="primary">More Info</Button>
+                            <Button variant="primary" target="_blank" href={"//"+this.state.live_preview}>More Info</Button>
                         </Col>
                     </Row>
                 </Container>
