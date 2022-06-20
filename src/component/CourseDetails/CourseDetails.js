@@ -1,8 +1,47 @@
 import React, {Component, Fragment} from 'react';
 import {Button, Col, Container, Row} from "react-bootstrap";
 import {BigPlayButton, Player} from "video-react";
+import RestClient from "../../RestApi/RestClient";
+import AppUrl from "../../RestApi/AppUrl";
+import ReactHtmlParser from "react-html-parser";
 
 class CourseDetails extends Component {
+
+    constructor(props) {
+        super();
+
+        this.state={
+            CourseId:props.id,
+            long_title:" ",
+            long_des:" ",
+            total_lecture:" ",
+            total_student:" ",
+            skill_all:" ",
+            video_url:" ",
+            course_link:" "
+
+
+        }
+
+    }
+
+    componentDidMount() {
+        RestClient.GetRequest(AppUrl.CourseDetails+this.state.CourseId).then(result=>{
+            this.setState({
+                long_title:result[0]['long_title'],
+                long_des:result[0]['long_des'],
+                total_lecture:result[0]['total_lecture'],
+                total_student:result[0]['total_student'],
+                skill_all:result[0]['skill_all'],
+                video_url:result[0]['video_url'],
+                course_link:result[0]['course_link']
+
+            })
+        }).catch(error=>{
+
+        });
+    }
+
     render() {
         return (
             <Fragment>
@@ -11,14 +50,14 @@ class CourseDetails extends Component {
                         <Container className="topPageContentCourse">
                             <Row>
                                 <Col lg={6} md={6} sm={12}>
-                                    <h3 className="topPageCourseTitles ">Full Dynamic Website With Admin Panel</h3>
-                                    <h5 className="topPageCourseSubTitles mt-3">Total Lecture=30</h5>
-                                    <h5 className="topPageCourseSubTitles mt-3">Total Student=30</h5>
+                                    <h3 className="topPageCourseTitles ">{this.state.long_title}</h3>
+                                    <h5 className="topPageCourseSubTitles mt-3">Total Lecture= {this.state.total_lecture}</h5>
+                                    <h5 className="topPageCourseSubTitles mt-3">Total Student= {this.state.total_student}</h5>
 
                                 </Col>
 
                                 <Col lg={6} md={6} sm={12}>
-                                    <p className="topPageCourseDes">I am a highly talented, experienced, professional and cooperative software engineer, I am working in programming and web world for more than 4 years .I assure you a wide range of quality IT services. Web development, mobile app development and UI design the major filed i am expert in. Moreover i have teaching passion. I makes video tutorial to share my knowledge. My over all skill makes me a complete software developer, so you can hire me for your projects</p>
+                                    <p className="topPageCourseDes">{this.state.long_des}</p>
                                 </Col>
                             </Row>
                         </Container>
@@ -30,25 +69,15 @@ class CourseDetails extends Component {
                     <Row>
                         <Col lg={6} md={6} sm={12}>
                             <h1 className="serviceName">Skill You Get</h1>
-                            <ul>
-                                <li className="serviceDescription">Unlimited Dynamic Product Category</li>
-                                <li className="serviceDescription">Unlimited Dynamic Product Category</li>
-                                <li className="serviceDescription">Unlimited Dynamic Product Category</li>
-                                <li className="serviceDescription">Unlimited Dynamic Product Category</li>
-                                <li className="serviceDescription">Unlimited Dynamic Product Category</li>
-                                <li className="serviceDescription">Unlimited Dynamic Product Category</li>
-                                <li className="serviceDescription">Unlimited Dynamic Product Category</li>
-                                <li className="serviceDescription">Unlimited Dynamic Product Category</li>
-                                <li className="serviceDescription">Unlimited Dynamic Product Category</li>
-                                <li className="serviceDescription">Unlimited Dynamic Product Category</li>
-                            </ul>
+                            { ReactHtmlParser(this.state.skill_all) }
+
                             <Button variant="primary">More Info</Button>
 
                         </Col>
 
                         <Col lg={6} md={6} sm={12}>
                             <Player>
-                                <source src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4" />
+                                <source src={this.state.video_url} />
                                 <BigPlayButton position="center"/>
                             </Player>
                         </Col>
