@@ -4,19 +4,21 @@ import images from "../../asset/images/client_meeting.jpg";
 import {Link} from "react-router-dom";
 import RestClient from "../../RestApi/RestClient";
 import AppUrl from "../../RestApi/AppUrl";
+import Loading from "../Loading/Loading";
 
 class AllCourses extends Component {
 
     constructor() {
         super();
         this.state={
-            myData:[]
+            myData:[],
+            loader:true,
         }
     }
 
     componentDidMount() {
         RestClient.GetRequest(AppUrl.CourseAll).then(result=>{
-            this.setState({myData:result})
+            this.setState({myData:result,  loader:false,})
         }).catch(error=>{
 
         })
@@ -25,39 +27,45 @@ class AllCourses extends Component {
 
     render() {
 
-        const myCourses = this.state.myData;
+        if(this.state.loader == true){
+           return <Loading/>
+        }else{
 
-        const myView =  myCourses.map(myCourse=>{
-            return <Col lg={6} md={12} sm={12} className="p-2">
-                <Row>
-                    <Col lg={6} md={6} sm={12}>
-                        <img className="CourseImage" src={myCourse.small_img}/>
-                    </Col>
+            const myCourses = this.state.myData;
 
-                    <Col lg={6} md={6} sm={12} className="p-2">
-                        <h4 className="text-justify courseTitle">{myCourse.short_title}</h4>
-                        <p className="text-justify courseDes">{myCourse.short_des}</p>
-                        <Link to={"/CourseDetails/"+myCourse.id} className="courseDetails">Details</Link>
-                    </Col>
-                </Row>
-
-            </Col>
-        });
-
-
-
-
-
-        return (
-            <Fragment>
-                <Container className="mt-5">
+            const myView =  myCourses.map(myCourse=>{
+                return <Col lg={6} md={12} sm={12} className="p-2">
                     <Row>
-                        {myView}
-                    </Row>
-                </Container>
+                        <Col lg={6} md={6} sm={12}>
+                            <img className="CourseImage" src={myCourse.small_img}/>
+                        </Col>
 
-            </Fragment>
-        );
+                        <Col lg={6} md={6} sm={12} className="p-2">
+                            <h4 className="text-justify courseTitle">{myCourse.short_title}</h4>
+                            <p className="text-justify courseDes">{myCourse.short_des}</p>
+                            <Link to={"/CourseDetails/"+myCourse.id} className="courseDetails">Details</Link>
+                        </Col>
+                    </Row>
+
+                </Col>
+            });
+
+
+
+
+
+            return (
+                <Fragment>
+                    <Container className="mt-5">
+                        <Row>
+                            {myView}
+                        </Row>
+                    </Container>
+
+                </Fragment>
+            );
+        }
+
     }
 }
 

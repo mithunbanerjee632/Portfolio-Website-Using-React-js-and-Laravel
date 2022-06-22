@@ -10,12 +10,15 @@ class ProjectDetails extends Component {
     constructor(props) {
         super();
         this.state={
+
             MyProjectID:props.id,
-            project_name:"",
-            short_description:"",
-            project_features:"",
-            live_preview:"",
-            img_two:""
+            project_name:" ",
+            short_description:" ",
+            project_features:" ",
+            live_preview:" ",
+            img_two:" "
+
+
         }
     }
 
@@ -24,6 +27,7 @@ class ProjectDetails extends Component {
 
 
             this.setState({
+
                 project_name: result[0]['project_name'],
                 short_description: result[0]['short_description'],
                 project_features: result[0]['project_features'],
@@ -38,6 +42,7 @@ class ProjectDetails extends Component {
 
     render() {
         return (
+
             <Fragment>
                 <Container className="mt-5">
                     <Row>

@@ -4,19 +4,21 @@ import images from "../../asset/images/client_meeting.jpg"
 import {Link} from "react-router-dom";
 import RestClient from "../../RestApi/RestClient";
 import AppUrl from "../../RestApi/AppUrl";
+import Loading from "../Loading/Loading";
 
 class Courses extends Component {
 
     constructor() {
         super();
         this.state={
-            myData:[]
+            myData:[],
+            loader:true,
         }
     }
 
     componentDidMount() {
         RestClient.GetRequest(AppUrl.CourseHome).then(result=>{
-            this.setState({myData:result})
+            this.setState({myData:result,loader:false})
         }).catch(error=>{
 
         })
@@ -24,10 +26,13 @@ class Courses extends Component {
 
 
     render() {
-        const myCourses = this.state.myData;
+        if(this.state.loader==true){
+            return <Loading/>
+        }else{
+            const myCourses = this.state.myData;
 
-       const myView =  myCourses.map(myCourse=>{
-           return <Col lg={6} md={12} sm={12} className="p-2">
+            const myView =  myCourses.map(myCourse=>{
+                return <Col lg={6} md={12} sm={12} className="p-2">
                     <Row>
                         <Col lg={6} md={6} sm={12}>
                             <img className="CourseImage" src={myCourse.small_img}/>
@@ -40,25 +45,26 @@ class Courses extends Component {
                         </Col>
                     </Row>
 
-            </Col>
-        });
+                </Col>
+            });
 
 
 
-        return (
-            <Fragment>
-                <Container >
-                    <h1 className="serviceMainTitle text-center">OUR COURSES</h1>
-                    <Row>
+            return (
+                <Fragment>
+                    <Container >
+                        <h1 className="serviceMainTitle text-center">OUR COURSES</h1>
+                        <Row>
 
+                            {myView}
 
-                        {myView}
+                        </Row>
+                    </Container>
 
-                    </Row>
-                </Container>
+                </Fragment>
+            );
+        }
 
-            </Fragment>
-        );
     }
 }
 

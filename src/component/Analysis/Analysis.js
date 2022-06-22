@@ -6,6 +6,7 @@ import AppUrl from "../../RestApi/AppUrl";
 
 import parse from 'html-react-parser';
 import ReactHtmlParser from 'react-html-parser';
+import Loading from "../Loading/Loading";
 
 
 
@@ -15,7 +16,8 @@ class Analysis extends Component {
 
         this.state={
             data:[],
-            desc:"..."
+            desc:"...",
+            loader:true
 
 
         }
@@ -23,11 +25,11 @@ class Analysis extends Component {
 
     componentDidMount() {
         RestClient.GetRequest(AppUrl.ChartData).then(result=>{
-            this.setState({data:result})
+            this.setState({data:result,loader:false})
         })
 
         RestClient.GetRequest(AppUrl.TechDescription).then(descrip=>{
-            this.setState({desc:descrip[0]['tech_description']})
+            this.setState({desc:descrip[0]['tech_description'],loader:false})
         })
 
 
@@ -37,38 +39,44 @@ class Analysis extends Component {
 
 
     render() {
-        var blue="rgba(0,115,230,0.8)"
-        return (
-            <Fragment>
-                <Container>
-                    <h1 className="serviceMainTitle text-center">TECHNOLOGY USED</h1>
 
-                    <Row>
-                        <Col style={{width:'50%', height:'260px'}}  lg={6} md={12} sm={12}>
-                            <ResponsiveContainer>
-                                <BarChart width={100} height={300} data={this.state.data}>
-                                    <XAxis dataKey="technology"/>
-                                    <Tooltip/>
-                                    <Bar dataKey="project" fill={blue} >
-                                    </Bar>
-                                </BarChart>
-                            </ResponsiveContainer>
+        if(this.state.loader==true){
+            return <Loading/>
+        }else{
+            var blue="rgba(0,115,230,0.8)"
+            return (
+                <Fragment>
+                    <Container>
+                        <h1 className="serviceMainTitle text-center">TECHNOLOGY USED</h1>
 
-                        </Col>
+                        <Row>
+                            <Col style={{width:'50%', height:'260px'}}  lg={6} md={12} sm={12}>
+                                <ResponsiveContainer>
+                                    <BarChart width={100} height={300} data={this.state.data}>
+                                        <XAxis dataKey="technology"/>
+                                        <Tooltip/>
+                                        <Bar dataKey="project" fill={blue} >
+                                        </Bar>
+                                    </BarChart>
+                                </ResponsiveContainer>
 
-                        <Col lg={6} md={12} sm={12}>
-                            <p className="text-justify des">
+                            </Col>
 
-                                { ReactHtmlParser(this.state.desc) }
+                            <Col lg={6} md={12} sm={12}>
+                                <p className="text-justify des">
+
+                                    { ReactHtmlParser(this.state.desc) }
 
 
-                            </p>
-                        </Col>
-                    </Row>
-                </Container>
+                                </p>
+                            </Col>
+                        </Row>
+                    </Container>
 
-            </Fragment>
-        );
+                </Fragment>
+            );
+        }
+
     }
 }
 
