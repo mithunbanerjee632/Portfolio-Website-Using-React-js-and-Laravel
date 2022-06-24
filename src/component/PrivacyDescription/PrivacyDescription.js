@@ -5,6 +5,7 @@ import RestClient from "../../RestApi/RestClient";
 import AppUrl from "../../RestApi/AppUrl";
 import ReactHtmlParser from "react-html-parser";
 import Loading from "../Loading/Loading";
+import WentWrong from "../WentWrong/WentWrong";
 
 class PrivacyDescription extends Component {
 
@@ -12,20 +13,27 @@ class PrivacyDescription extends Component {
         super();
         this.state={
             desc:"...",
-            loader:true
+            loader:true,
+            error:false
         }
     }
 
     componentDidMount() {
         RestClient.GetRequest(AppUrl.Information).then(result=>{
-            this.setState({desc:result[0]['privacy'],loader:false})
-        })
+            if(result==null){
+                this.setState({error:true,loading:false})
+            }else {
+                this.setState({desc: result[0]['privacy'], loader: false})
+            }
+        }).catch(error=>{
+            this.setState({error:true,loading:false})
+        });
     }
 
     render() {
-        if(this.state.loader==true){
+        if(this.state.loader==true && this.state.error==false){
             return <Loading/>
-        }else{
+        }else if(this.state.loader==false && this.state.error==false){
             return (
                 <Fragment>
                     <Container className="serviceDescription mt-5">
@@ -37,6 +45,8 @@ class PrivacyDescription extends Component {
                     </Container>
                 </Fragment>
             );
+        }else if(this.state.error==true){
+            return <WentWrong/>
         }
 
     }

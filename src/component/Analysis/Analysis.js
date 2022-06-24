@@ -7,6 +7,7 @@ import AppUrl from "../../RestApi/AppUrl";
 import parse from 'html-react-parser';
 import ReactHtmlParser from 'react-html-parser';
 import Loading from "../Loading/Loading";
+import WentWrong from "../WentWrong/WentWrong";
 
 
 
@@ -17,7 +18,8 @@ class Analysis extends Component {
         this.state={
             data:[],
             desc:"...",
-            loader:true
+            loader:true,
+            error:false
 
 
         }
@@ -25,12 +27,26 @@ class Analysis extends Component {
 
     componentDidMount() {
         RestClient.GetRequest(AppUrl.ChartData).then(result=>{
-            this.setState({data:result,loader:false})
-        })
+            if(result==null){
+                this.setState({error:true,loading:false})
+            }else{
+                this.setState({data:result,loader:false})
+            }
+
+        }).catch(error=>{
+            this.setState({error:true,loading:false})
+        });
 
         RestClient.GetRequest(AppUrl.TechDescription).then(descrip=>{
-            this.setState({desc:descrip[0]['tech_description'],loader:false})
-        })
+            if(descrip==null){
+                this.setState({error:true,loading:false})
+            }else{
+                this.setState({desc:descrip[0]['tech_description'],loader:false})
+            }
+
+        }).catch(error=>{
+            this.setState({error:true,loading:false})
+        });
 
 
     }
@@ -40,9 +56,9 @@ class Analysis extends Component {
 
     render() {
 
-        if(this.state.loader==true){
+        if(this.state.loader==true && this.state.error==false){
             return <Loading/>
-        }else{
+        }else if(this.state.loader==false && this.state.error==false){
             var blue="rgba(0,115,230,0.8)"
             return (
                 <Fragment>
@@ -75,6 +91,8 @@ class Analysis extends Component {
 
                 </Fragment>
             );
+        }else if(this.state.error==true){
+            return <WentWrong/>
         }
 
     }

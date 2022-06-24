@@ -7,6 +7,8 @@ import 'video-react/dist/video-react.css';
 import {Player,BigPlayButton} from "video-react";
 import RestClient from "../../RestApi/RestClient";
 import AppUrl from "../../RestApi/AppUrl";
+import Loading from "../Loading/Loading";
+import WentWrong from "../WentWrong/WentWrong";
 
 class Video extends Component {
      constructor() {
@@ -14,13 +16,25 @@ class Video extends Component {
          this.state={
              show:false,
              videDesc:"",
-             videoUrl:""
+             videoUrl:"",
+             loading:true,
+             error:false
          }
      }
 
      componentDidMount() {
          RestClient.GetRequest(AppUrl.VideoHome).then(result=>{
-             this.setState({videDesc:result [0]['video_description'],videoUrl:result[0]['video_url']})
+             if(result==null){
+                 this.setState({error:true,loading:false})
+             }else {
+                 this.setState({
+                     videDesc: result [0]['video_description'],
+                     videoUrl: result[0]['video_url'],
+                     loading: false
+                 })
+             }
+         }).catch(error=>{
+             this.setState({error:true,loading:false})
          });
      }
 
@@ -33,38 +47,46 @@ class Video extends Component {
      }
 
     render() {
-        return (
-            <Fragment>
-                <Container className="text-center videoSection">
-                    <Row>
-                        <Col lg={12} md={12} sm={12} className="videoCard">
-                           <div>
-                               <p className="videoTitle">How I Do</p>
-                               <p className="videoDes">{this.state.videDesc}</p>
-                               <p><FontAwesomeIcon onClick={this.modalOpen} className=" playBtn iconBullet" icon={faPlayCircle} /></p>
-                           </div>
-                        </Col>
-                    </Row>
-                </Container>
+         if(this.state.loading == true && this.state.error==false){
+             return <Loading/>
+         }else if(this.state.loading == false && this.state.error==false){
+             return (
+                 <Fragment>
+                     <Container className="text-center videoSection">
+                         <Row>
+                             <Col lg={12} md={12} sm={12} className="videoCard">
+                                 <div>
+                                     <p className="videoTitle">How I Do</p>
+                                     <p className="videoDes">{this.state.videDesc}</p>
+                                     <p><FontAwesomeIcon onClick={this.modalOpen} className=" playBtn iconBullet" icon={faPlayCircle} /></p>
+                                 </div>
+                             </Col>
+                         </Row>
+                     </Container>
 
 
 
-                <Modal size="xl" show={this.state.show} onHide={this.modalClose}>
-                    <Modal.Body>
-                        <Player>
-                            <source src={this.state.videoUrl} />
-                            <BigPlayButton position="center"/>
-                        </Player>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="primary" onClick={this.modalClose}>
-                            Close
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
+                     <Modal size="xl" show={this.state.show} onHide={this.modalClose}>
+                         <Modal.Body>
+                             <Player>
+                                 <source src={this.state.videoUrl} />
+                                 <BigPlayButton position="center"/>
+                             </Player>
+                         </Modal.Body>
+                         <Modal.Footer>
+                             <Button variant="primary" onClick={this.modalClose}>
+                                 Close
+                             </Button>
+                         </Modal.Footer>
+                     </Modal>
 
-            </Fragment>
-        );
+                 </Fragment>
+             );
+         }else if(this.state.error==true){
+             return <WentWrong/>
+         }
+
+
     }
 }
 

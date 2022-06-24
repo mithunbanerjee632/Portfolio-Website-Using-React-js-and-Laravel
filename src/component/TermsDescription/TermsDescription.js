@@ -4,6 +4,7 @@ import ReactHtmlParser from "react-html-parser";
 import RestClient from "../../RestApi/RestClient";
 import AppUrl from "../../RestApi/AppUrl";
 import Loading from "../Loading/Loading";
+import WentWrong from "../WentWrong/WentWrong";
 
 class TermsDescription extends Component {
 
@@ -13,19 +14,26 @@ class TermsDescription extends Component {
         this.state={
             desc:"...",
             loader:true,
+            error:false
         }
     }
 
     componentDidMount() {
         RestClient.GetRequest(AppUrl.Information).then(result=>{
-            this.setState({desc:result[0]['terms'],loader:false})
+            if(result==null){
+                this.setState({error:true,loading:false})
+            }else {
+                this.setState({desc: result[0]['terms'], loader: false})
+            }
+        }).catch(error=>{
+            this.setState({error:true,loading:false})
         })
     }
 
     render() {
-        if(this.state.loader==true){
+        if(this.state.loader==true && this.state.error==false){
             return <Loading/>
-        }else{
+        }else if(this.state.loader==false && this.state.error==false){
             return (
                 <Fragment>
                     <Container className="serviceDescription mt-5">
@@ -38,6 +46,8 @@ class TermsDescription extends Component {
 
                 </Fragment>
             );
+        }else if(this.state.error==true){
+            return <WentWrong/>
         }
 
     }

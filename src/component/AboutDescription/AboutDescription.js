@@ -4,6 +4,7 @@ import RestClient from "../../RestApi/RestClient";
 import AppUrl from "../../RestApi/AppUrl";
 import ReactHtmlParser from "react-html-parser";
 import Loading from "../Loading/Loading";
+import WentWrong from "../WentWrong/WentWrong";
 
 class AboutDescription extends Component {
 
@@ -11,20 +12,28 @@ class AboutDescription extends Component {
         super();
         this.state={
             desc:"...",
-            loader:true
+            loader:true,
+            error:false
         }
     }
 
     componentDidMount() {
         RestClient.GetRequest(AppUrl.Information).then(result=>{
-            this.setState({desc:result[0]['about'],loader:false})
+            if(result==null){
+                this.setState({error:true,loading:false})
+            }else{
+                this.setState({desc:result[0]['about'],loader:false})
+            }
+
+        }).catch(error=>{
+            this.setState({error:true,loading:false})
         })
     }
 
     render() {
-        if(this.state.loader==true){
+        if(this.state.loader==true && this.state.error==false){
             return <Loading/>
-        }else{
+        }else if(this.state.loader==false && this.state.error==false){
             return (
                 <Fragment>
                     <Container className="mt-5">
@@ -36,6 +45,8 @@ class AboutDescription extends Component {
                     </Container>
                 </Fragment>
             );
+        }else if(this.state.error==true){
+            return <WentWrong/>
         }
 
     }

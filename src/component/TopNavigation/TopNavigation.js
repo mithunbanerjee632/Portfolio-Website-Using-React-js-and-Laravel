@@ -16,7 +16,8 @@ class TopNavigation extends Component {
             navBarLogo:[whiteLogo],
             navBackground:"navBarBackground",
             navBarItem:"navItem",
-            pageTitle:props.title
+            pageTitle:props.title,
+
 
         };
     }

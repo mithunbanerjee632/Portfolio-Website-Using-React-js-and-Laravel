@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import RestClient from "../../RestApi/RestClient";
 import AppUrl from "../../RestApi/AppUrl";
 import Loading from "../Loading/Loading";
+import WentWrong from "../WentWrong/WentWrong";
 
 class Courses extends Component {
 
@@ -13,22 +14,27 @@ class Courses extends Component {
         this.state={
             myData:[],
             loader:true,
+            error:false
         }
     }
 
     componentDidMount() {
         RestClient.GetRequest(AppUrl.CourseHome).then(result=>{
-            this.setState({myData:result,loader:false})
+            if(result==null){
+                this.setState({error:true,loading:false})
+            }else {
+                this.setState({myData: result, loader: false})
+            }
         }).catch(error=>{
-
+            this.setState({error:true,loading:false})
         })
     }
 
 
     render() {
-        if(this.state.loader==true){
+        if(this.state.loader==true && this.state.error==false){
             return <Loading/>
-        }else{
+        }else if(this.state.loader==false && this.state.error==false){
             const myCourses = this.state.myData;
 
             const myView =  myCourses.map(myCourse=>{
@@ -63,6 +69,8 @@ class Courses extends Component {
 
                 </Fragment>
             );
+        }else if(this.state.error==true){
+            return <WentWrong/>
         }
 
     }

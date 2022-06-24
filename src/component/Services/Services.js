@@ -6,6 +6,7 @@ import mobileLogo from "../../asset/images/mobile.svg";
 import restClient from "../../RestApi/RestClient";
 import AppUrl from "../../RestApi/AppUrl";
 import Loading from "../Loading/Loading";
+import WentWrong from "../WentWrong/WentWrong";
 
 class Services extends Component {
 
@@ -14,21 +15,28 @@ class Services extends Component {
        this.state={
            myData:[],
            loader:true,
+           error:false
        }
    }
 
    componentDidMount() {
        restClient.GetRequest(AppUrl.Services).then(result=>{
-           this.setState({myData:result,loader:false})
-       }).catch();
+           if(result==null){
+               this.setState({error:true,loading:false})
+           }else {
+               this.setState({myData: result, loader: false})
+           }
+       }).catch(error=>{
+           this.setState({error:true,loading:false})
+       });
    }
 
 
     render() {
 
-       if(this.state.loader==true){
+       if(this.state.loader==true && this.state.error==false){
            return <Loading/>
-       }else{
+       }else if(this.state.loader==false && this.state.error==false){
            const myList = this.state.myData;
 
            const myView = myList.map(myList=>{
@@ -57,6 +65,8 @@ class Services extends Component {
 
                </Fragment>
            );
+       }else if(this.state.error==true){
+           return <WentWrong/>
        }
 
 
